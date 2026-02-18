@@ -1,0 +1,60 @@
+.row {
+  position: relative;
+  padding: 40px;
+  background: #141414;
+  color: white;
+}
+
+.slider {
+  display: flex;
+  gap: 10px;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  min-width: 200px;
+  height: 300px;
+  list-style: none;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.card:hover {
+  transform: scale(1.3);
+  z-index: 10;
+}
+
+/* 좌우 버튼 */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 20;
+}
+
+.left {
+  left: 10px;
+}
+
+.right {
+  right: 10px;
+}
