@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Menu, X, Bell, Search } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Menu, X, Bell, Search, ChevronDown } from 'lucide-react';
 
 export default function NavbarClient() {
   const [scrolled, setScrolled] = useState(false);
@@ -19,10 +19,7 @@ export default function NavbarClient() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/90 backdrop-blur-md' : 'bg-gradient-to-b from-black/80 to-transparent'}`}>
-      {/* ${
-        scrolled ? 'bg-black/90 backdrop-blur-md' : 'bg-gradient-to-b from-black/80 to-transparent'
-      } */}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/90 backdrop-blur-md' : 'bg-linear-to-b from-black/80 to-transparent'}`}>
       <div className='flex items-center justify-between px-6 md:px-12 py-4'>
         {/* 왼쪽 */}
         <div className='flex items-center gap-6'>
@@ -39,11 +36,21 @@ export default function NavbarClient() {
           />
 
           <nav className='hidden md:flex gap-6 text-sm text-gray-300'>
-            <a className='hover:text-white transition'>홈</a>
-            <a className='hover:text-white transition'>시리즈</a>
-            <a className='hover:text-white transition'>영화</a>
-            <a className='hover:text-white transition'>NEW! 요즘 대세</a>
-            <a className='hover:text-white transition'>내가 찜한 리스트</a>
+            <a className='hover:text-white transition' href='/'>
+              홈
+            </a>
+            <a className='hover:text-white transition' href='/'>
+              시리즈
+            </a>
+            <a className='hover:text-white transition' href='/'>
+              영화
+            </a>
+            <a className='hover:text-white transition' href='/'>
+              NEW! 요즘 대세
+            </a>
+            <a className='hover:text-white transition' href='/'>
+              내가 찜한 리스트
+            </a>
           </nav>
         </div>
 
@@ -55,9 +62,13 @@ export default function NavbarClient() {
 
           {/* 프로필 */}
           <div className='relative'>
-            <div
+            <button
+              type='button'
               onClick={() => setProfileOpen(!profileOpen)}
-              className='w-8 h-8 bg-blue-500 rounded cursor-pointer'></div>
+              className='flex items-center cursor-pointer'>
+              <div className='w-8 h-8 bg-blue-500 rounded'></div>
+              <ChevronDown color='transparent' fill='white' />
+            </button>
 
             {profileOpen && (
               <div className='absolute right-0 mt-3 w-40 bg-black/90 backdrop-blur-md rounded shadow-lg p-3 text-sm'>
