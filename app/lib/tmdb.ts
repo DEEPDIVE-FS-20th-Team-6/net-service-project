@@ -30,12 +30,6 @@ export const requests = {
 	fetchNetflixOriginals: "discover/tv?with_networks=213&",
 	fetchTrending: "trending/all/week",
 	fetchTopRated: "movie/top_rated",
-	// TODO 장르별 API는 나중에 구현
-	// fetchActionMovies: 'discover/movie?with_genres=28',
-	// fetchComedyMovies: 'discover/movie?with_genres=35',
-	// fetchHorrorMovies: 'discover/movie?with_genres=27',
-	// fetchRomanceMovies: 'discover/movie?with_genres=10749',
-	// fetchDocumentaries: 'discover/movie?with_genres=99',
 	fetchGenre: "genre/movie/list",
 };
 
