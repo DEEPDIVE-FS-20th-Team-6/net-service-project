@@ -37,9 +37,12 @@ export default function MovieRowClient({
 	const sliderRef = useRef<HTMLDivElement>(null);
 	const sliderContainerRef = useRef<HTMLDivElement>(null);
 	const [hoveredId, setHoveredId] = useState<number | null>(null);
+
+	/* 호버 오버레이 타이밍/전환을 제어하는 상태와 타이머 */
 	const hoverScale = 1.35;
 	const hoverOpenDelay = 240;
 	const hoverCloseDuration = 140;
+
 	const [hoverState, setHoverState] = useState<HoverState | null>(null);
 	const [isClosing, setIsClosing] = useState(false);
 	const hoverInTimerRef = useRef<number | null>(null);
@@ -79,7 +82,6 @@ export default function MovieRowClient({
 		}
 	};
 
-	// 넷플릭스처럼 느껴지도록 오픈을 잠깐 지연합니다.
 	const scheduleOpen = (nextHover: HoverState) => {
 		clearHoverInTimer();
 		hoverInTimerRef.current = window.setTimeout(() => {
@@ -92,7 +94,6 @@ export default function MovieRowClient({
 	const handleMouseEnter = (
 		event: MouseEvent<HTMLElement> | FocusEvent<HTMLElement>,
 		movie: Movie,
-		_index: number,
 		label: string,
 		detailLines: string[],
 	) => {
@@ -142,7 +143,6 @@ export default function MovieRowClient({
 			return;
 		}
 
-		// 다른 오버레이가 열려 있으면 먼저 닫고 다음을 엽니다.
 		if (hoverState) {
 			pendingHoverRef.current = nextHover;
 			clearHoverCloseTimer();
@@ -161,7 +161,6 @@ export default function MovieRowClient({
 		scheduleOpen(nextHover);
 	};
 
-	// 짧은 닫힘 애니메이션으로 종료합니다.
 	const handleMouseLeave = () => {
 		clearHoverInTimer();
 		clearHoverOutTimer();
@@ -182,7 +181,7 @@ export default function MovieRowClient({
 		setIsClosing(false);
 	};
 
-	const safeMovies = (movies || []).filter((m) => m.backdrop_path);
+	const safeMovies = movies.filter((movie) => movie.backdrop_path);
 
 	return (
 		<div className={styles.row}>
@@ -199,7 +198,7 @@ export default function MovieRowClient({
 				</button>
 
 				<div ref={sliderRef} className={styles.slider}>
-					{safeMovies.map((movie, index) => {
+					{safeMovies.map((movie) => {
 						const label =
 							movie.title || movie.name || movie.original_name || "";
 						const isHovered = hoveredId === movie.id;
@@ -219,7 +218,7 @@ export default function MovieRowClient({
 								label={label}
 								isHovered={isHovered}
 								onEnter={(event) =>
-									handleMouseEnter(event, movie, index, label, detailLines)
+									handleMouseEnter(event, movie, label, detailLines)
 								}
 								onLeave={handleMouseLeave}
 							/>
