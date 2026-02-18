@@ -1,22 +1,17 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import MovieRow from '@/components/MovieRow';
-
-const sampleMovies = [
-  { id: 1, title: 'Movie 1', image: 'https://picsum.photos/200/300?1' },
-  { id: 2, title: 'Movie 2', image: 'https://picsum.photos/200/300?2' },
-  { id: 3, title: 'Movie 3', image: 'https://picsum.photos/200/300?3' },
-];
+import { requests } from '@/lib/tmdb';
 
 export default function Home() {
   return (
-    <div>
+    <div className='bg-black min-h-screen'>
       <Navbar />
       <Hero />
-      <div className='mt-[-100px] relative z-10'>
-        <MovieRow title='인기 콘텐츠' movies={sampleMovies} />
-        <MovieRow title='추천 콘텐츠' movies={sampleMovies} />
-        <MovieRow title='신작 콘텐츠' movies={sampleMovies} />
+      <div className='relative z-20 -mt-16 md:-mt-24 space-y-6 pb-16'>
+        <MovieRow title='인기 콘텐츠' fetchUrl={requests.fetchNowPlaying} />
+        <MovieRow title='넷플릭스 오리지널' fetchUrl={requests.fetchNetflixOriginals} />
+        <MovieRow title='지금 뜨는 콘텐츠' fetchUrl={requests.fetchTrending} />
       </div>
     </div>
   );

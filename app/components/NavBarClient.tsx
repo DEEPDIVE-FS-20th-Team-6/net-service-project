@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Menu, X, Bell, Search } from 'lucide-react';
 
-export default function NavbarClient({ movies }: { movies: any[] }) {
+export default function NavbarClient() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);

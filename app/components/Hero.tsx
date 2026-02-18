@@ -1,8 +1,8 @@
-import { getNowPlaying } from '@/lib/tmdb';
+import { get, requests } from '@/lib/tmdb';
 import HeroClient from './HeroClient';
 
 const getRandomMovie = async () => {
-  const data = await getNowPlaying();
+  const data = await get(requests.fetchNowPlaying);
   const candidates = data.results.filter((m: any) => m.backdrop_path);
   return candidates[Math.floor(Math.random() * candidates.length)];
 };
