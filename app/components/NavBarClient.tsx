@@ -1,27 +1,28 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Menu, X, Bell, Search } from 'lucide-react';
 
-export default function Navbar() {
+export default function NavbarClient({ movies }: { movies: any[] }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setScrolled(window.scrollY > 50);
-  //   };
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => window.removeEventListener('scroll', handleScroll);
-  // }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/90 backdrop-blur-md' : 'bg-gradient-to-b from-black/80 to-transparent'}`}>
+      {/* ${
         scrolled ? 'bg-black/90 backdrop-blur-md' : 'bg-gradient-to-b from-black/80 to-transparent'
-      }`}>
+      } */}
       <div className='flex items-center justify-between px-6 md:px-12 py-4'>
         {/* 왼쪽 */}
         <div className='flex items-center gap-6'>
@@ -30,6 +31,10 @@ export default function Navbar() {
             alt='Netflix'
             width={100}
             height={40}
+            style={{
+              width: '80px',
+              height: '36px',
+            }}
             className='cursor-pointer'
           />
 
