@@ -9,13 +9,13 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setScrolled(window.scrollY > 50);
+  //   };
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, []);
 
   return (
     <header
@@ -26,7 +26,7 @@ export default function Navbar() {
         {/* 왼쪽 */}
         <div className='flex items-center gap-6'>
           <Image
-            src='/netflix-logo.png'
+            src='https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg'
             alt='Netflix'
             width={100}
             height={40}
