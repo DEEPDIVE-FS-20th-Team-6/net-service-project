@@ -1,4 +1,3 @@
-/* 영화 행 전체 레이아웃 */
 .row {
   position: relative;
   padding: 0 60px;
@@ -18,7 +17,6 @@
   overflow: visible;
 }
 
-/* 카드 가로 스크롤 영역 */
 .slider {
   display: flex;
   gap: 6px;
@@ -120,7 +118,6 @@
   transform: translateY(0px);
 }
 
-/* 호버 확장 카드 오버레이 */
 .hoverOverlay {
   position: absolute;
   z-index: 60;
